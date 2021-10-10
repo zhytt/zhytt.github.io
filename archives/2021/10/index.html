@@ -21,9 +21,9 @@
 <meta property="article:author" content="非鱼">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,npm/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css?v=233" crossorigin>
-  <link rel="stylesheet" href="/css/style.css?v=1633877539738">
+  <link rel="stylesheet" href="/css/style.css?v=1633877722542">
   
-  <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1633877539738">
+  <link rel="stylesheet" href="/lib/iconfont/iconfont.css?v=1633877722542">
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -184,23 +184,26 @@
 
         <article>
             
-                <h4 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h4><p> <strong>Acwing 789. 数的范围（详细分析二分过程）</strong> <a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/791/">原题链接</a></p>
+                <h3 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h3><p> <strong>Acwing 789. 数的范围（详细分析二分过程）</strong> <a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/791/">原题链接</a></p>
 <p>给定一个按照升序排列的长度为 n 的整数数组，以及 q 个查询。</p>
 <p>对于每个查询，返回一个元素 kk 的起始位置和终止位置（位置从 00 开始计数）。</p>
 <p>如果数组中不存在该元素，则返回 <code>-1 -1</code>。</p>
-<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>第一行包含整数 n 和 q，表示数组长度和询问个数。</p>
+<p> <strong>输入格式</strong></p>
+<p>第一行包含整数 n 和 q，表示数组长度和询问个数。</p>
 <p>第二行包含 n 个整数（均在 1∼100001∼10000 范围内），表示完整数组。</p>
 <p>接下来 q 行，每行包含一个整数 kk，表示一个询问元素。</p>
-<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>共 q行，每行包含两个整数，表示所求元素的起始位置和终止位置。</p>
+<p><strong>输出格式</strong></p>
+<p>共 q行，每行包含两个整数，表示所求元素的起始位置和终止位置。</p>
 <p>如果数组中不存在该元素，则返回 <code>-1 -1</code>。</p>
-<h4 id="数据范围"><a href="#数据范围" class="headerlink" title="数据范围"></a>数据范围</h4><p>1≤n≤1000001≤n≤100000<br>1≤q≤100001≤q≤10000<br>1≤k≤10000</p>
+<p><strong>数据范围</strong></p>
+<p>1≤n≤1000001≤n≤100000<br>1≤q≤100001≤q≤10000<br>1≤k≤10000</p>
 <p>输入样例:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">6 3</span><br><span class="line">1 2 2 3 3 4</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td></tr></table></figure>
 
 <p>输入样例:</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">3 4</span><br><span class="line">5 5</span><br><span class="line">-1 -1</span><br></pre></td></tr></table></figure>
 
-<h4 id="解析："><a href="#解析：" class="headerlink" title="解析："></a>解析：</h4><p>本题是练习二分很好的一道题目，二分程序虽然简单，但是如果写之前不考虑好想要查找的是什么，十有八九会是死循环或者查找错误，就算侥幸写对了也只是运气好而已。用二分去查找元素要求数组的有序性或者拥有类似于有序的性质，对本题而言，一个包含重复元素的有序序列，要求输出某元素出现的起始位置和终止位置，翻译一下就是：在数组中查找某元素，找不到就输出-1，找到了就输出不小于该元素的最小位置和不大于该元素的最大位置。所以，需要写两个二分，一个需要找到&gt;=x的第一个数，另一个需要找到&lt;=x的最后一个数。查找不小于x的第一个位置，较为简单：</p>
+<h4 id="解析"><a href="#解析" class="headerlink" title="解析:"></a><strong>解析</strong>:</h4><p>本题是练习二分很好的一道题目，二分程序虽然简单，但是如果写之前不考虑好想要查找的是什么，十有八九会是死循环或者查找错误，就算侥幸写对了也只是运气好而已。用二分去查找元素要求数组的有序性或者拥有类似于有序的性质，对本题而言，一个包含重复元素的有序序列，要求输出某元素出现的起始位置和终止位置，翻译一下就是：在数组中查找某元素，找不到就输出-1，找到了就输出不小于该元素的最小位置和不大于该元素的最大位置。所以，需要写两个二分，一个需要找到&gt;=x的第一个数，另一个需要找到&lt;=x的最后一个数。查找不小于x的第一个位置，较为简单：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int l = 0, r = n - 1;</span><br><span class="line">while (l &lt; r) &#123;</span><br><span class="line">    int mid = l + r &gt;&gt; 1;</span><br><span class="line">    if (a[mid] &lt; x)  l = mid + 1;</span><br><span class="line">    else    r = mid;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>当a[mid]小于x时，令l = mid + 1，mid及其左边的位置被排除了，可能出现解的位置是mid + 1及其后面的位置；当a[mid] &gt;= x时，说明mid及其左边可能含有值为x的元素；当查找结束时，l与r相遇，l所在元素若是x则一定是x出现最小位置，因为l左边的元素必然都小于x。查找不大于x的最后一个位置，便不容易了：</p>
@@ -250,7 +253,7 @@
 
  
 
-<script async src="/js/app.js?v=1633877539739"></script>
+<script async src="/js/app.js?v=1633877722543"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
